@@ -1,4 +1,5 @@
-//todo : insert prompt method 
+//todo : all the code is private. Does not interfire with other code
+//tocheck: how to make the code private  
 
 // function constructor | question | possible answer | correct answer 
 
@@ -44,8 +45,7 @@ Question.prototype.logInConsole = function(){
 
     }
 
-    prompt(prompQuestion); 
-
+   return prompt(prompQuestion); 
 }
 
 // set the random question 
@@ -54,14 +54,24 @@ function randomQuestion(questions){
 
     var randomNumber = Math.floor(Math.random()*(Object.keys(questions).length)+1);
 
-    console.log(randomNumber);
+    var input = questions[randomNumber].logInConsole();
 
-    questions[randomNumber].logInConsole();
+        return  function rightAnswerVerification(rightAnswer){  
 
+                if(parseInt(input, 10) !== questions[randomNumber].correctAnswer){
+            
+                    console.log('not correct');
+            
+                }
+                else { console.log('correct')}
+
+
+        
+    }  
 
 }
 
-randomQuestion(gameQuestions);  
+randomQuestion(gameQuestions)();  
 
 
-// function to calculate if the answer is correct 
+//make all variables local will restrict the scope of functions 
