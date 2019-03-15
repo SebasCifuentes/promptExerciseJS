@@ -22,8 +22,6 @@ function Question (question, possibleAnswers, correctAnswer){
 
 footballQuestion = new Question("What is your football club?", { 1 :"Benfica", 2 : "Porto", 3: "Sporting"}, 1);
 
-console.log(footballQuestion);
-
 jobQuestion = new Question("What is your job?", { 1 :"Doctor", 2 : "Player", 3: "DJ"}, 2 );
 
 hobbieQuestion = new Question("What is your hobbie?", { 1 :"VideoGame", 2 : "Sports", 3: "Tv"}, 2);
@@ -54,24 +52,29 @@ function randomQuestion(questions){
 
     var randomNumber = Math.floor(Math.random()*(Object.keys(questions).length)+1);
 
-    var input = questions[randomNumber].logInConsole();
+    var input = parseInt(questions[randomNumber].logInConsole(),10);
 
-        return  function rightAnswerVerification(rightAnswer){  
+    var rightAnswer = questions[randomNumber].correctAnswer;
 
-                if(parseInt(input, 10) !== questions[randomNumber].correctAnswer){
-            
-                    console.log('not correct');
-            
-                }
-                else { console.log('correct')}
+    //pass parametros 
+    rightAnswerVerification(rightAnswer, input);
 
 
-        
-    }  
+    randomQuestion(questions);    
+}   
+
+
+function rightAnswerVerification(rightAnswer, input){  
+
+
+    if(input !== rightAnswer){
+
+        console.log('not correct');
+
+    }
+    else { console.log('correct')}
 
 }
 
-randomQuestion(gameQuestions)();  
 
-
-//make all variables local will restrict the scope of functions 
+randomQuestion(gameQuestions);
