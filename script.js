@@ -52,7 +52,17 @@ function randomQuestion(questions){
 
     var randomNumber = Math.floor(Math.random()*(Object.keys(questions).length)+1);
 
-    var input = parseInt(questions[randomNumber].logInConsole(),10);
+    var input = questions[randomNumber].logInConsole();
+
+    var controlExit = false;
+
+    if(input === "exit"){
+
+        controlExit = true;
+
+    }
+     
+    input = parseInt(input, 10);
 
     var rightAnswer = questions[randomNumber].correctAnswer;
 
@@ -60,7 +70,11 @@ function randomQuestion(questions){
     rightAnswerVerification(rightAnswer, input);
 
 
-    randomQuestion(questions);    
+    if(!controlExit){
+        
+        randomQuestion(questions);    
+
+    }
 }   
 
 
